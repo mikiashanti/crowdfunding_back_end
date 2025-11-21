@@ -31,16 +31,5 @@ class Pledge(models.Model):
         related_name='pledges'
     )
 
-# Get a pledge from the database
-#some_pledge = Pledge.objects.get(pk=1)
-
-# Now we can grab the fundraiser from our foreignkey field
-#some_fundraiser = some_pledge.fundraiser
-
-# Get a fundraiser from the database
-#some_fundraiser = Fundraiser.objects.get(pk=1)
-
-# Now we can grab te list of pledges from our related_name property
-#associated_pledges = some_fundraiser.pledges
 
 
