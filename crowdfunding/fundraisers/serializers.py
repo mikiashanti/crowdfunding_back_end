@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.apps import apps
 
 class PledgeSerializer(serializers.ModelSerializer):
+    #applying fix for Pledges
     supporter = serializers.ReadOnlyField(source='supporter.id')
     class Meta:
         model = apps.get_model('fundraisers.Pledge')
