@@ -63,6 +63,11 @@ class FundraiserDetail(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
     
+    def delete(self, request, pk):
+        fundraiser = self.get_object(pk)
+        fundraiser.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 class PledgeList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
@@ -86,9 +91,12 @@ class PledgeList(APIView):
         )
 
 class PledgeDetail(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsSupporterOrReadOnly]
+    
     def get_object(self, pk):
         try:
             pledge = Pledge.objects.get(pk=pk)
+            self.check_object_permissions(self.request, pledge)
             return pledge
         except Pledge.DoesNotExist:
             raise Http404
@@ -97,3 +105,8 @@ class PledgeDetail(APIView):
         pledge = self.get_object(pk)
         serializer = PledgeSerializer(pledge)
         return Response(serializer.data)
+    
+    def delete(self, request, pk):
+        pledge = self.get_object(pk)
+        pledge.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
