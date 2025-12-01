@@ -1,6 +1,8 @@
 # Crowdfunding Back End
 Michaela Gyasi-Agyei
 
+Link to depployed project: https://pakyi-library-fundraiser-5eb04ac099ec.herokuapp.com/fundraisers/
+
 ## Planning:
 ### Concept/Name
 My website concept is a crowdfunding site called Sankofa Shelves which allows people to contribute to the purchase of books relating to Africa and the diaspora which will be included in libraries in Pakyi, other Ghanaian towns and cities, and other cities around the world. 
@@ -8,14 +10,100 @@ My website concept is a crowdfunding site called Sankofa Shelves which allows pe
 ### Intended Audience/User Stories
 My intended audience is anyone who is interested in literature, education and African culture. An example user may be an African based overseas who wants to contribute to a library in their family's hometown by pledging to a fundraiser. Another example user may be a teacher based in Ghana who creates a fundraiser raise more funds for books in their school's library. 
 
-### Front End Pages/Functionality
-- {{ A page on the front end }}
-    - {{ A list of dot-points showing functionality is available on this page }}
-    - {{ etc }}
-    - {{ etc }}
-- {{ A second page available on the front end }}
-    - {{ Another list of dot-points showing functionality }}
-    - {{ etc }}
+### Insomnia Screenshots
+
+ A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
+
+ A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
+ 
+ A screenshot of Insomnia, demonstrating a token being returned.
+
+
+### Instructions
+To register a new user and create a new fundraiser the following steps should be followed.
+## Step 1: Register a New User
+        
+    **Endpoint:** `POST /users/`
+        
+        **Body (JSON):**
+        ```json
+        {
+          "username": "john_doe",
+          "email": "john@example.com",
+          "password": "securepassword123"
+        }
+        ```
+        
+        **Response (201 Created):**
+        ```json
+        {
+          "id": 1,
+          "username": "john_doe",
+          "email": "john@example.com"
+        }
+        ```
+        
+        ---
+        
+        ## Step 2: Get Authentication Token
+        
+        **Endpoint:** `POST /api-token-auth/`
+        
+        **Body (JSON):**
+        ```json
+        {
+          "username": "john_doe",
+          "password": "securepassword123"
+        }
+        ```
+        
+        **Response (200 OK):**
+        ```json
+        {
+          "token": "0123456789abcdefghijklmnop"
+        }
+        ```
+        
+        Save this token — you'll use it to authenticate the next request.
+        
+        ---
+        
+        ## Step 3: Create a New Fundraiser
+        
+        **Endpoint:** `POST /fundraisers/`
+        
+        **Headers:**
+        ```
+        Authorization: Token 0123456789abcdefghijklmnop
+        Content-Type: application/json
+        ```
+        
+        **Body (JSON):**
+        ```json
+        {
+          "title": "Fundraiser one",
+          "description": "The first fundraiser.",
+          "goal": 150,
+          "image": "https://via.placeholder.com/300.jpg",
+          "is_open": true
+        }
+        ```
+        
+        **Response (201 Created):**
+        ```json
+        {
+          "id": 1,
+          "title": "Fundraiser one",
+          "description": "The first fundraiser.",
+          "goal": 150,
+          "image": "https://via.placeholder.com/300.jpg",
+          "is_open": true,
+          "date_created": "2025-11-21T20:22:01Z",
+          "owner": 1
+        }
+        ```
+
+
 
 ### API Spec
 
@@ -30,7 +118,6 @@ My intended audience is anyone who is interested in literature, education and Af
 |  | DELETE | Delete fundraiser |  |  |  |  
 |  | PUT | Update pledge |  |  |  |  
 |  | PUT | Update fundraiser |  |  |  |  
-
 
 
 ### DB Schema
