@@ -8,7 +8,7 @@ Link to deployed project: https://pakyi-library-fundraiser-5eb04ac099ec.herokuap
 My website concept is a crowdfunding site called Sankofa Shelves which allows people to contribute to the purchase of books relating to Africa and the diaspora which will be included in libraries in Pakyi, other Ghanaian towns and cities, and other cities around the world. 
 
 ### Intended Audience/User Stories
-My intended audience is anyone who is interested in literature, education and African culture. An example user may be an African based overseas who wants to contribute to a library in their family's hometown by pledging to a fundraiser. Another example user may be a teacher based in Ghana who creates a fundraiser raise more funds for books in their school's library. 
+My intended audience is anyone who is interested in literature, education and African culture. An example user may be an African based overseas who wants to contribute to a library in their family's hometown by pledging to a fundraiser. Another example user may be a teacher based in Ghana who creates a fundraiser raise more funds for books in their school's library.
 
 ## Insomnia Screenshots
 
@@ -111,20 +111,21 @@ To register a new user and create a new fundraiser the following steps should be
 
 | URL | HTTP Method | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
 | --- | ----------- | ------- | ------------ | --------------------- | ---------------------------- |
-| http://localhost:8000/users/ | POST | Create new user |  | 201 CREATED | N/A   
+| http://localhost:8000/users/ | POST | Create new user | {"username": "[insert username]", "email": "[insert email]", 	"password": "[insert password]"} | 201 CREATED | N/A   
 | http://localhost:8000/users/ | GET | View all existing users | N/A | 200 OK | N/A |   
 | http://localhost:8000/api-token-auth/ | POST | Return token | {  "username": "[insert username]", "password": "[insert password]"  } | 200 OK | N/A |  
-| http://localhost:8000/fundraisers/ | POST | Make a new fundraiser | {  "title": "Example Fundraiser", "description": "An example description", "goal": 100, "image": "https://via.placeholder.com/300.jpg", "is_open": true  } | 201 CREATED | Bearer token |  
+| http://localhost:8000/fundraisers/ | POST | Make a new fundraiser | {  "title": "Example Fundraiser", "description": "[insert description]", "goal": [insert goal], "image": "[insert image location]", "is_open": [insert true or false]  } | 201 CREATED | Bearer token |  
  | http://localhost:8000/fundraisers/ | GET | View all existing fundraisers | N/A | 200 OK | N/A |  
  | http://localhost:8000/fundraisers/{pk} | GET | View specific fundraiser | N/A | 200 OK | N/A |   
  | http://localhost:8000/pledges/ | POST | Make a new pledge |{  "amount": [insert pledge amount], "comment": [insert comment for pledge], 		"anonymous": [true or false], "fundraiser" [insert fundraiser ID]  } | 201 CREATED | Bearer token |  
 | http://localhost:8000/pledges/ | GET | View all existing pledges | N/A | 200 OK | N/A |  
 | http://localhost:8000/pledges/{pk}/ | GET | View specific pledge | N/A | 200 OK | N/A |
-| http://localhost:8000/pledges/{pk}/| DELETE | Delete pledge |  | 204 NO CONTENT | Bearer token |  
-| http://localhost:8000/fundraisers/{pk}/ | DELETE | Delete fundraiser |  | 204 NO CONTENT | Bearer token |  
-| http://localhost:8000/pledges/{pk}/ | PUT | Update pledge | {     } | 200 OK | Bearer token |  
-| http://localhost:8000/fundraisers/{pk}/ | PUT | Update fundraiser | {    } | 200 OK | Bearer token |  
+| http://localhost:8000/pledges/{pk}/| DELETE | Delete pledge | N/A | 204 NO CONTENT | Bearer token |  
+| http://localhost:8000/fundraisers/{pk}/ | DELETE | Delete fundraiser | N/A | 204 NO CONTENT | Bearer token |  
+| http://localhost:8000/pledges/{pk}/ | PUT | Update pledge | {  "amount": [insert pledge amount], "comment": [insert comment for pledge], 		"anonymous": [true or false], "fundraiser" [insert fundraiser ID]  } | 200 OK | Bearer token |  
+| http://localhost:8000/fundraisers/{pk}/ | PUT | Update fundraiser | {  "title": "Example Fundraiser", "description": "[insert description]", "goal": [insert goal], "image": "[insert image location]", "is_open": [insert true or false]  } | 200 OK | Bearer token |  
 
 
 ## DB Schema
-![]( {{ ./relative/path/to/your/schema/image.png }} )
+![Database schema, showing the relationships between users, fundraisers and pledges](./img/db_schema.png)
+Database schema, showing the relationships between users, fundraisers and pledges
