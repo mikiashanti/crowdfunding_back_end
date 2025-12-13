@@ -3,26 +3,42 @@ Michaela Gyasi-Agyei
 
 Link to deployed project: https://pakyi-library-fundraiser-5eb04ac099ec.herokuapp.com/fundraisers/
 
+## Table of contents
+- [Crowdfunding Back End](#crowdfunding-back-end)
+  - [Table of contents](#table-of-contents)
+  - [Planning:](#planning)
+    - [Concept/Name](#conceptname)
+    - [Intended Audience/User Stories](#intended-audienceuser-stories)
+  - [Insomnia Screenshots](#insomnia-screenshots)
+  - [Example instructions](#example-instructions)
+    - [Step 1: Register a New User](#step-1-register-a-new-user)
+    - [Step 2: Get Authentication Token](#step-2-get-authentication-token)
+    - [Step 3: Create a New Fundraiser](#step-3-create-a-new-fundraiser)
+  - [API Spec](#api-spec)
+  - [DB Schema](#db-schema)
+
 ## Planning:
 ### Concept/Name
-My website concept is a crowdfunding site called Sankofa Shelves which allows people to contribute to the purchase of books relating to Africa and the diaspora which will be included in libraries in Pakyi, other Ghanaian towns and cities, and other cities around the world. 
+My website concept is a crowdfunding site called Sankofa Shelves which allows people to contribute to the purchase of books relating to Africa and the diaspora. These books will be included in libraries in the Ghanaian town of Pakyi, other Ghanaian towns or cities, and cities in other African countries. 
+
+![Sankofa Shelves logo](./img/logo.jpg)
 
 ### Intended Audience/User Stories
-My intended audience is anyone who is interested in literature, education and African culture. An example user may be an African based overseas who wants to contribute to a library in their family's hometown by pledging to a fundraiser. Another example user may be a teacher based in Ghana who creates a fundraiser raise more funds for books in their school's library.
+My intended audience is anyone who is interested in literature, education and African culture. An example user may be a person with African heritage living overseas who wants to contribute to a library in their family's hometown by pledging an amount to a fundraiser. Another example user may be a teacher based in Ghana who wants to create a fundraiser to raise more funds for books in their school's library.
 
 ## Insomnia Screenshots
 
 ![A screenshot of Insomnia, demonstrating a successful GET method for /fundraisers/3/ endpoint](./img/get_fundraisers_3.png)
-A screenshot of Insomnia, demonstrating a successful GET method for /fundraisers/3/ endpoint.
+A screenshot of Insomnia, demonstrating a successful GET method for the /fundraisers/3/ endpoint.
 
 ![A screenshot of Insomnia, demonstrating a successful POST method for /pledges/ endpoint](./img/post_pledges.png)
-A screenshot of Insomnia, demonstrating a successful POST method for /pledges/ endpoint.
+A screenshot of Insomnia, demonstrating a successful POST method for the /pledges/ endpoint.
 
 ![A screenshot of Insomnia, demonstrating a token being returned](./img/return_token.png)
 A screenshot of Insomnia, demonstrating a token being returned.
 
-## Instructions
-To register a new user and create a new fundraiser the following steps should be followed.
+## Example instructions
+To register a new user and create a new fundraiser, the following steps can be followed as an example.
 ### Step 1: Register a New User
         
     Select POST as the HTTP request method and include the following URL: http://localhost:8000/users/
@@ -94,7 +110,7 @@ To register a new user and create a new fundraiser the following steps should be
         
         Press the "Send" button.
         
-        The HTTP response should be "201 Created", with the follwing JSON:
+        The HTTP response should be "201 Created", with the following JSON:
 
         {
           "id": 1,
@@ -116,14 +132,14 @@ To register a new user and create a new fundraiser the following steps should be
 | http://localhost:8000/api-token-auth/ | POST | Return token | {  "username": "[insert username]", "password": "[insert password]"  } | 200 OK | N/A |  
 | http://localhost:8000/fundraisers/ | POST | Make a new fundraiser | {  "title": "Example Fundraiser", "description": "[insert description]", "goal": [insert goal], "image": "[insert image location]", "is_open": [insert true or false]  } | 201 CREATED | Bearer token |  
  | http://localhost:8000/fundraisers/ | GET | View all existing fundraisers | N/A | 200 OK | N/A |  
- | http://localhost:8000/fundraisers/{pk} | GET | View specific fundraiser | N/A | 200 OK | N/A |   
+ | http://localhost:8000/fundraisers/{pk} | GET | View a specific fundraiser | N/A | 200 OK | N/A |   
  | http://localhost:8000/pledges/ | POST | Make a new pledge |{  "amount": [insert pledge amount], "comment": [insert comment for pledge], 		"anonymous": [true or false], "fundraiser" [insert fundraiser ID]  } | 201 CREATED | Bearer token |  
 | http://localhost:8000/pledges/ | GET | View all existing pledges | N/A | 200 OK | N/A |  
-| http://localhost:8000/pledges/{pk}/ | GET | View specific pledge | N/A | 200 OK | N/A |
-| http://localhost:8000/pledges/{pk}/| DELETE | Delete pledge | N/A | 204 NO CONTENT | Bearer token |  
-| http://localhost:8000/fundraisers/{pk}/ | DELETE | Delete fundraiser | N/A | 204 NO CONTENT | Bearer token |  
-| http://localhost:8000/pledges/{pk}/ | PUT | Update pledge | {  "amount": [insert pledge amount], "comment": [insert comment for pledge], 		"anonymous": [true or false], "fundraiser" [insert fundraiser ID]  } | 200 OK | Bearer token |  
-| http://localhost:8000/fundraisers/{pk}/ | PUT | Update fundraiser | {  "title": "Example Fundraiser", "description": "[insert description]", "goal": [insert goal], "image": "[insert image location]", "is_open": [insert true or false]  } | 200 OK | Bearer token |  
+| http://localhost:8000/pledges/{pk}/ | GET | View a specific pledge | N/A | 200 OK | N/A |
+| http://localhost:8000/pledges/{pk}/| DELETE | Delete a specific pledge | N/A | 204 NO CONTENT | Bearer token |  
+| http://localhost:8000/fundraisers/{pk}/ | DELETE | Delete a specific fundraiser | N/A | 204 NO CONTENT | Bearer token |  
+| http://localhost:8000/pledges/{pk}/ | PUT | Update a specific pledge | {  "amount": [insert pledge amount], "comment": [insert comment for pledge], 		"anonymous": [true or false], "fundraiser" [insert fundraiser ID]  } | 200 OK | Bearer token |  
+| http://localhost:8000/fundraisers/{pk}/ | PUT | Update specific fundraiser | {  "title": "Example Fundraiser", "description": "[insert description]", "goal": [insert goal], "image": "[insert image location]", "is_open": [insert true or false]  } | 200 OK | Bearer token |  
 
 
 ## DB Schema
